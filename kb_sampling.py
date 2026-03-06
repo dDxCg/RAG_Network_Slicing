@@ -117,7 +117,7 @@ for i in range (0, n_samples):
     chunk_dict = {
         "slice": f"Probability of user using embb, urllc and mmtc is: {slice_probs[0]}, {slice_probs[1]}, {slice_probs[2]}",
         "ue_pattern": f"Probability of user walking, using vehicle and stationary is: {ue_patterns[0]}, {ue_patterns[1]}, {ue_patterns[2]}",
-        "ue_number": f"The rate of the change in number of users is: {ue_nums}",
+        "ue_arrival": f"The rate of the change in number of users is: {ue_nums}",
         "analyze": {
             "slice": state_slice,
             "ue_pattern": state_user_pattern,

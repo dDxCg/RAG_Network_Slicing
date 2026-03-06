@@ -55,8 +55,4 @@ numeric_data = [*sample_slice_prob, *sample_pattern_prob, sample_arrival]
 #     print(doc.page_content)
 
 
-#sql lite:
-import sqlite3
 
-conn = sqlite3.connect("experiment_memory.db")
-cursor = conn.cursor()

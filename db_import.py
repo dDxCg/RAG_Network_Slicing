@@ -14,9 +14,7 @@ CREATE TABLE IF NOT EXISTS exp (
     vehicle REAL,
     stationary REAL,
     ue_arrival REAL,
-    analyze TEXT,
-    action TEXT,
-    reward REAL
+    content TEXT
 )
 """)
 conn.commit()
@@ -28,11 +26,11 @@ with open("sample_kb.jsonl", "r") as f:
         obj = json.loads(line)
 
         numeric = json.loads(obj["numeric_data"])
-
+        content = f"<ENV>{obj['slice']}. {obj['ue_pattern']}. {obj['ue_arrival']}\n<THINK>{obj['analyze']}\n<ACTION>{obj['action']}\n<REWARD>{obj['reward']}"
         cursor.execute("""
         INSERT INTO exp
-        (embb, urllc, mmtc, walk, vehicle, stationary, ue_arrival, analyze, action, reward)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        (embb, urllc, mmtc, walk, vehicle, stationary, ue_arrival, content)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         """, (
             numeric[0],
             numeric[1],
@@ -41,21 +39,7 @@ with open("sample_kb.jsonl", "r") as f:
             numeric[4],
             numeric[5],
             numeric[6],
-            json.dumps(obj["analyze"]),
-            obj["action"],  
-            obj["reward"]
+            content
         ))
-conn.commit()
-
-# SELECT
-# cursor.execute("SELECT * FROM experiences LIMIT 5")
-# rows = cursor.fetchall()
-# for row in rows:
-#     print(row)
-
-# DELETE
-# cursor.execute("DELETE FROM experiences")
-# cursor.execute("DELETE FROM sqlite_sequence WHERE name='experiments'")
-
 conn.commit()
 conn.close()
