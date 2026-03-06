@@ -4,5 +4,6 @@ env/
 /venv/
 /env/
 .env
-
+.db
+chroma_db
 __pycache__/

@@ -24,7 +24,7 @@
 
 # 10 simulate sample for each scenario: ~500 chunks
 
-n_samples = 500
+n_samples = 1000
 samples = []
 
 import random
@@ -124,7 +124,8 @@ for i in range (0, n_samples):
             "ue_number": state_user_num
         },
         "action": "Reward weights for QoS, Energy and Fairness: 2, 0.8, 0.5",
-        "reward": "Reward value: 1.5"
+        "reward": "1.5",
+        "numeric_data": f"{[*slice_probs, *ue_patterns, ue_nums]}"
     }
 
     samples.append(chunk_dict)
